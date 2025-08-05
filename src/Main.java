@@ -4,7 +4,6 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        boolean valid = false;
         Scanner input = new Scanner(System.in);
         int num;
         double sum = 0;
