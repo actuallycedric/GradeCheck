@@ -8,20 +8,25 @@ public class GradeChecker {
     }
 
     public void checkGrades() throws IOException{
-        BufferedReader in = null;
+        Scanner in = null;
         int cnt = 0;
         double sum = 0;
 
         try{
-            in = new BufferedReader(new FileReader("./src/grades.txt"));
+            in = new Scanner(new BufferedReader(new FileReader("./src/grades.txt")));
+            in.useDelimiter(",\\s*");
 
             String c;
-            in.mark(0); // waypoint for re-reading
 
 
-            while((c = in.readLine()) != null){
-                cnt++;
-                sum += Double.parseDouble(c);
+            while(in.hasNext()){
+                if(in.hasNextDouble()){
+                    cnt++;
+                    sum += in.nextDouble();
+                }
+                else{
+                    in.next();
+                }
             }
 
         }
