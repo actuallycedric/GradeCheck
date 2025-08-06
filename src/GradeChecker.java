@@ -7,32 +7,27 @@ public class GradeChecker {
 
     }
 
-    public void checkGrades(int num){
-        Scanner input = new Scanner(System.in);
+    public void checkGrades() throws IOException{
+        BufferedReader in = null;
+        int cnt = 0;
         double sum = 0;
 
+        try{
+            in = new BufferedReader(new FileReader("./src/grades.txt"));
 
-        while(true){
-            try{
-                for(int i = 0; i < num; i++){
-                    System.out.print("Enter your mark: ");
-                    double grade = input.nextDouble();
+            String c;
+            in.mark(0); // waypoint for re-reading
 
-                    sum += grade;
 
-                }
-
-                break;
+            while((c = in.readLine()) != null){
+                cnt++;
+                sum += Double.parseDouble(c);
             }
 
-            catch (InputMismatchException n){
-                System.out.println("Invalid input. Please enter a valid double.");
-                input.next(); // clears any invalid input
-            }
         }
-
-
-        System.out.printf("Your average of " + num + " subjects: %.2f", (sum / (double) num));
+        finally{
+            System.out.printf("Average of " + cnt + " grades: %.2f", (sum/(double) cnt));
+        }
     }
 
 
